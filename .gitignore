@@ -30,6 +30,8 @@ data/incidents.json
 *.onnx
 *.pt
 *.pth
+models/
+submissions/
 
 # Hackathon generated artifacts
 replay.json
