@@ -1,0 +1,268 @@
+{
+  "cv_balanced_accuracy": 0.9662023960233711,
+  "raw_oof_balanced_accuracy": 0.9646907401233648,
+  "models": [
+    "lightgbm",
+    "xgboost",
+    "catboost"
+  ],
+  "model_weights": {
+    "lightgbm": 0.25,
+    "xgboost": 0.75,
+    "catboost": 0.0
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9637744571852007,
+      "best_iteration": 1475
+    },
+    {
+      "fold": 1,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9649033656841778,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 1,
+      "model": "catboost",
+      "balanced_accuracy": 0.952717479916279,
+      "best_iteration": 1716
+    },
+    {
+      "fold": 1,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9627471596346502,
+      "best_iteration": null
+    },
+    {
+      "fold": 2,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9639713269741123,
+      "best_iteration": 1439
+    },
+    {
+      "fold": 2,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9649954833931783,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 2,
+      "model": "catboost",
+      "balanced_accuracy": 0.9541214095348547,
+      "best_iteration": 1965
+    },
+    {
+      "fold": 2,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9631411208768629,
+      "best_iteration": null
+    },
+    {
+      "fold": 3,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9636215039476371,
+      "best_iteration": 1077
+    },
+    {
+      "fold": 3,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9637961084841509,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 3,
+      "model": "catboost",
+      "balanced_accuracy": 0.9527683279435389,
+      "best_iteration": 1611
+    },
+    {
+      "fold": 3,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9621488789149519,
+      "best_iteration": null
+    },
+    {
+      "fold": 4,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9644255095562876,
+      "best_iteration": 1088
+    },
+    {
+      "fold": 4,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9647077659949228,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 4,
+      "model": "catboost",
+      "balanced_accuracy": 0.9540827913612532,
+      "best_iteration": 1957
+    },
+    {
+      "fold": 4,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9629968815482419,
+      "best_iteration": null
+    },
+    {
+      "fold": 5,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9637499329394502,
+      "best_iteration": 1398
+    },
+    {
+      "fold": 5,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9644582334683481,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 5,
+      "model": "catboost",
+      "balanced_accuracy": 0.9540625432303155,
+      "best_iteration": 1914
+    },
+    {
+      "fold": 5,
+      "model": "ensemble",
+      "balanced_accuracy": 0.963277913244338,
+      "best_iteration": null
+    }
+  ],
+  "class_labels": [
+    "GALAXY",
+    "QSO",
+    "STAR"
+  ],
+  "classification_report": {
+    "GALAXY": {
+      "precision": 0.9889842189345384,
+      "recall": 0.9561062837766239,
+      "f1-score": 0.9722673828916867,
+      "support": 377480.0
+    },
+    "QSO": {
+      "precision": 0.9498109287346769,
+      "recall": 0.9756110053524325,
+      "f1-score": 0.9625381103980326,
+      "support": 117143.0
+    },
+    "STAR": {
+      "precision": 0.8685430715270764,
+      "recall": 0.966889898941057,
+      "f1-score": 0.9150816577524812,
+      "support": 82724.0
+    },
+    "accuracy": 0.9616088764642408,
+    "macro avg": {
+      "precision": 0.935779406398764,
+      "recall": 0.9662023960233711,
+      "f1-score": 0.9499623836807335,
+      "support": 577347.0
+    },
+    "weighted avg": {
+      "precision": 0.9637788394798651,
+      "recall": 0.9616088764642408,
+      "f1-score": 0.9620995841603522,
+      "support": 577347.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      360911,
+      5580,
+      10989
+    ],
+    [
+      1740,
+      114286,
+      1117
+    ],
+    [
+      2280,
+      459,
+      79985
+    ]
+  ],
+  "feature_count": 39,
+  "features": [
+    "alpha",
+    "delta",
+    "u",
+    "g",
+    "r",
+    "i",
+    "z",
+    "redshift",
+    "spectral_type",
+    "galaxy_population",
+    "u_g",
+    "g_r",
+    "r_i",
+    "i_z",
+    "u_r",
+    "g_i",
+    "r_z",
+    "u_z",
+    "g_z",
+    "u_i",
+    "g_z_over_u_z",
+    "mag_mean",
+    "mag_std",
+    "mag_min",
+    "mag_max",
+    "mag_range",
+    "mag_skew_proxy",
+    "redshift_clipped",
+    "redshift_log1p",
+    "redshift_abs",
+    "redshift_x_u_g",
+    "redshift_x_g_r",
+    "redshift_x_r_i",
+    "redshift_x_i_z",
+    "redshift_x_mag_range",
+    "alpha_sin",
+    "alpha_cos",
+    "delta_sin",
+    "delta_cos"
+  ],
+  "selected_proba_bias": {
+    "GALAXY": 0.75,
+    "QSO": 1.399999976158142,
+    "STAR": 1.399999976158142
+  },
+  "class_weight_multipliers": {
+    "GALAXY": 1.0,
+    "QSO": 1.0,
+    "STAR": 1.0
+  },
+  "args": {
+    "models": "lightgbm,xgboost,catboost",
+    "folds": 5,
+    "seed": 42,
+    "iterations": 2000,
+    "learning_rate": 0.035,
+    "early_stopping_rounds": 150,
+    "thread_count": -1,
+    "task_type": "CPU",
+    "devices": null,
+    "lgb_num_leaves": 128,
+    "xgb_max_depth": 8,
+    "xgb_min_child_weight": 6.0,
+    "galaxy_weight_mult": 1.0,
+    "qso_weight_mult": 1.0,
+    "star_weight_mult": 1.0,
+    "weight_search": true,
+    "weight_search_step": 0.05,
+    "auto_bias": true,
+    "bias_search_min": 0.5,
+    "bias_search_max": 1.7,
+    "bias_search_step": 0.05,
+    "quick": false
+  },
+  "submission": "D:\\Notes\\All Materials\\Hackthons\\Predicting Stellar Class\\submissions\\ensemble_v3_0_966202_20260610_223612.csv"
+}

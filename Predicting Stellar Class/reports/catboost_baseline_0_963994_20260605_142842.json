@@ -1,0 +1,150 @@
+{
+  "cv_balanced_accuracy": 0.9639937785777367,
+  "folds": [
+    {
+      "fold": 1,
+      "balanced_accuracy": 0.964495050740386,
+      "best_iteration": 2265
+    },
+    {
+      "fold": 2,
+      "balanced_accuracy": 0.9638319014196753,
+      "best_iteration": 1676
+    },
+    {
+      "fold": 3,
+      "balanced_accuracy": 0.9635940129191347,
+      "best_iteration": 1561
+    },
+    {
+      "fold": 4,
+      "balanced_accuracy": 0.9639357719586941,
+      "best_iteration": 2480
+    },
+    {
+      "fold": 5,
+      "balanced_accuracy": 0.9641121529108357,
+      "best_iteration": 2112
+    }
+  ],
+  "class_labels": [
+    "GALAXY",
+    "QSO",
+    "STAR"
+  ],
+  "classification_report": {
+    "GALAXY": {
+      "precision": 0.9883863618854759,
+      "recall": 0.9516557168591714,
+      "f1-score": 0.9696733303461046,
+      "support": 377480.0
+    },
+    "QSO": {
+      "precision": 0.9491776042531982,
+      "recall": 0.975406127553503,
+      "f1-score": 0.9621131427272306,
+      "support": 117143.0
+    },
+    "STAR": {
+      "precision": 0.8535742928941881,
+      "recall": 0.9649194913205358,
+      "f1-score": 0.905838094859821,
+      "support": 82724.0
+    },
+    "accuracy": 0.9583751192956749,
+    "macro avg": {
+      "precision": 0.9303794196776206,
+      "recall": 0.9639937785777367,
+      "f1-score": 0.9458748559777188,
+      "support": 577347.0
+    },
+    "weighted avg": {
+      "precision": 0.9611146776287754,
+      "recall": 0.9583751192956749,
+      "f1-score": 0.9589928746087315,
+      "support": 577347.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      359231,
+      5725,
+      12524
+    ],
+    [
+      1712,
+      114262,
+      1169
+    ],
+    [
+      2509,
+      393,
+      79822
+    ]
+  ],
+  "feature_count": 35,
+  "features": [
+    "alpha",
+    "delta",
+    "u",
+    "g",
+    "r",
+    "i",
+    "z",
+    "redshift",
+    "spectral_type",
+    "galaxy_population",
+    "u_g",
+    "g_r",
+    "r_i",
+    "i_z",
+    "u_r",
+    "g_i",
+    "r_z",
+    "u_z",
+    "g_z",
+    "mag_mean",
+    "mag_std",
+    "mag_min",
+    "mag_max",
+    "mag_range",
+    "redshift_clipped",
+    "redshift_log1p",
+    "redshift_abs",
+    "redshift_x_u_g",
+    "redshift_x_g_r",
+    "redshift_x_r_i",
+    "redshift_x_i_z",
+    "alpha_sin",
+    "alpha_cos",
+    "delta_sin",
+    "delta_cos"
+  ],
+  "cat_features": [
+    "spectral_type",
+    "galaxy_population"
+  ],
+  "params": {
+    "loss_function": "MultiClass",
+    "eval_metric": "Accuracy",
+    "iterations": 3000,
+    "learning_rate": 0.035,
+    "depth": 8,
+    "l2_leaf_reg": 5.0,
+    "random_seed": 42,
+    "class_names": [
+      "GALAXY",
+      "QSO",
+      "STAR"
+    ],
+    "class_weights": [
+      0.5098256861290664,
+      1.642855313591081,
+      2.326398626758861
+    ],
+    "thread_count": -1,
+    "allow_writing_files": false,
+    "verbose": 100
+  },
+  "submission": "D:\\Notes\\All Materials\\Hackthons\\Predicting Stellar Class\\submissions\\catboost_baseline_0_963994_20260605_142842.csv"
+}

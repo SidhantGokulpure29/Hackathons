@@ -1,0 +1,227 @@
+{
+  "cv_balanced_accuracy": 0.9661885274240976,
+  "raw_oof_balanced_accuracy": 0.9649739923067845,
+  "models": [
+    "lightgbm",
+    "xgboost"
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.963961547161449,
+      "best_iteration": 1732
+    },
+    {
+      "fold": 1,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9655292007342947,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 1,
+      "model": "ensemble",
+      "balanced_accuracy": 0.965188476420363,
+      "best_iteration": null
+    },
+    {
+      "fold": 2,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.964484670545889,
+      "best_iteration": 1534
+    },
+    {
+      "fold": 2,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9650378064405075,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 2,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9650827873239868,
+      "best_iteration": null
+    },
+    {
+      "fold": 3,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9633915728759269,
+      "best_iteration": 1644
+    },
+    {
+      "fold": 3,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9648965281491537,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 3,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9644004244519833,
+      "best_iteration": null
+    },
+    {
+      "fold": 4,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9641317646067652,
+      "best_iteration": 1583
+    },
+    {
+      "fold": 4,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9651097085132946,
+      "best_iteration": 1999
+    },
+    {
+      "fold": 4,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9652489158928222,
+      "best_iteration": null
+    },
+    {
+      "fold": 5,
+      "model": "lightgbm",
+      "balanced_accuracy": 0.9639574543910455,
+      "best_iteration": 1798
+    },
+    {
+      "fold": 5,
+      "model": "xgboost",
+      "balanced_accuracy": 0.9652087318151281,
+      "best_iteration": 1998
+    },
+    {
+      "fold": 5,
+      "model": "ensemble",
+      "balanced_accuracy": 0.9649493531479515,
+      "best_iteration": null
+    }
+  ],
+  "class_labels": [
+    "GALAXY",
+    "QSO",
+    "STAR"
+  ],
+  "classification_report": {
+    "GALAXY": {
+      "precision": 0.9882855496286828,
+      "recall": 0.9585673413160962,
+      "f1-score": 0.9731996250717783,
+      "support": 377480.0
+    },
+    "QSO": {
+      "precision": 0.9527242386316228,
+      "recall": 0.9747402747069821,
+      "f1-score": 0.9636065200237982,
+      "support": 117143.0
+    },
+    "STAR": {
+      "precision": 0.8739383591629455,
+      "recall": 0.9652579662492142,
+      "f1-score": 0.9173310663327436,
+      "support": 82724.0
+    },
+    "accuracy": 0.9628074624099545,
+    "macro avg": {
+      "precision": 0.9383160491410837,
+      "recall": 0.9661885274240976,
+      "f1-score": 0.9513790704761066,
+      "support": 577347.0
+    },
+    "weighted avg": {
+      "precision": 0.964686196660336,
+      "recall": 0.9628074624099545,
+      "f1-score": 0.963248182078633,
+      "support": 577347.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      361840,
+      5248,
+      10392
+    ],
+    [
+      1833,
+      114184,
+      1126
+    ],
+    [
+      2456,
+      418,
+      79850
+    ]
+  ],
+  "feature_count": 39,
+  "features": [
+    "alpha",
+    "delta",
+    "u",
+    "g",
+    "r",
+    "i",
+    "z",
+    "redshift",
+    "spectral_type",
+    "galaxy_population",
+    "u_g",
+    "g_r",
+    "r_i",
+    "i_z",
+    "u_r",
+    "g_i",
+    "r_z",
+    "u_z",
+    "g_z",
+    "u_i",
+    "g_z_over_u_z",
+    "mag_mean",
+    "mag_std",
+    "mag_min",
+    "mag_max",
+    "mag_range",
+    "mag_skew_proxy",
+    "redshift_clipped",
+    "redshift_log1p",
+    "redshift_abs",
+    "redshift_x_u_g",
+    "redshift_x_g_r",
+    "redshift_x_r_i",
+    "redshift_x_i_z",
+    "redshift_x_mag_range",
+    "alpha_sin",
+    "alpha_cos",
+    "delta_sin",
+    "delta_cos"
+  ],
+  "selected_proba_bias": {
+    "GALAXY": 0.800000011920929,
+    "QSO": 1.159999966621399,
+    "STAR": 1.2000000476837158
+  },
+  "class_weight_multipliers": {
+    "GALAXY": 1.0,
+    "QSO": 1.0,
+    "STAR": 1.0
+  },
+  "args": {
+    "models": "lightgbm,xgboost",
+    "folds": 5,
+    "seed": 42,
+    "iterations": 2000,
+    "learning_rate": 0.035,
+    "early_stopping_rounds": 150,
+    "thread_count": -1,
+    "task_type": "CPU",
+    "devices": null,
+    "galaxy_weight_mult": 1.0,
+    "qso_weight_mult": 1.0,
+    "star_weight_mult": 1.0,
+    "auto_bias": true,
+    "bias_search_min": 0.8,
+    "bias_search_max": 1.2,
+    "bias_search_step": 0.02,
+    "quick": false
+  },
+  "submission": "D:\\Notes\\All Materials\\Hackthons\\Predicting Stellar Class\\submissions\\ensemble_v3_0_966189_20260608_183001.csv"
+}

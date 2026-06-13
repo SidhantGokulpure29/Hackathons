@@ -1,0 +1,21 @@
+{
+  "name": "crisisbrief",
+  "version": "1.0.0",
+  "description": "Foundry IQ incident reasoning agent for the Agents League Hackathon.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "agents-league",
+    "azure-ai-foundry",
+    "incident-response",
+    "reasoning-agent"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

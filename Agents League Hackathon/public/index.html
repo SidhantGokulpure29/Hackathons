@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CrisisBrief</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar">
+        <div>
+          <p class="eyebrow">Agents League Hackathon</p>
+          <h1>CrisisBrief</h1>
+          <p class="lede">A Foundry IQ incident reasoning agent that turns messy evidence into cited executive action.</p>
+        </div>
+        <div class="status-panel">
+          <span id="modePill" class="pill">Ready</span>
+          <button id="demoButton" type="button">Load Demo Incident</button>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="sidebar">
+          <div class="panel">
+            <h2>Incident</h2>
+            <label>
+              Title
+              <input id="incidentTitle" value="Payment outage across regions">
+            </label>
+            <label>
+              Scenario
+              <textarea id="incidentScenario" rows="4">Payment outage caused failed checkouts across multiple regions.</textarea>
+            </label>
+            <button id="createButton" type="button">Create Workspace</button>
+          </div>
+
+          <div class="panel">
+            <h2>Evidence Upload</h2>
+            <label>
+              Source name
+              <input id="docName" placeholder="gateway-log.txt">
+            </label>
+            <label>
+              Evidence text
+              <textarea id="docContent" rows="8" placeholder="Paste notes, logs, customer reports, policy snippets..."></textarea>
+            </label>
+            <button id="addDocButton" type="button" disabled>Add Evidence</button>
+          </div>
+
+          <div class="panel">
+            <h2>Documents</h2>
+            <ul id="documentList" class="document-list"></ul>
+          </div>
+        </aside>
+
+        <section class="brief-surface">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Cited Crisis Room</p>
+              <h2 id="briefTitle">No workspace yet</h2>
+            </div>
+            <div class="toolbar-actions">
+              <button id="analyzeButton" type="button" disabled>Analyze</button>
+              <button id="exportButton" type="button" disabled>Export JSON</button>
+            </div>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <h3>Start with the demo incident</h3>
+            <p>Load the seeded payment outage packet, run analysis, and inspect citations beside every major claim.</p>
+          </div>
+
+          <div id="briefOutput" class="brief-output hidden"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="citationTemplate">
+      <button class="citation" type="button"></button>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+node_modules/
+.env
+*.log
+data/incidents.json
+*.csv
+*.pkl
+*.joblib
+*.h5

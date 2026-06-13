@@ -1,0 +1,8 @@
+09:10:42 UTC checkout-api eastus payment_authorize latency_ms=842 status=ok gateway_adapter=3.18.0
+09:13:08 UTC checkout-api eastus payment_authorize latency_ms=10000 status=timeout gateway_adapter=3.18.0
+09:14:19 UTC checkout-api westeurope payment_authorize latency_ms=10000 status=timeout gateway_adapter=3.18.0
+09:16:44 UTC checkout-api westus payment_authorize latency_ms=9276 status=timeout gateway_adapter=3.18.0
+09:31:20 UTC ledger-writer eastus database pool_wait_ms=6800 active_connections=400 max_connections=400
+09:39:55 UTC ledger-writer westeurope database pool_wait_ms=7200 active_connections=400 max_connections=400
+10:15:01 UTC checkout-api eastus payment_authorize latency_ms=1330 status=ok gateway_adapter=3.17.4
+10:30:28 UTC checkout-api westeurope payment_authorize latency_ms=2440 status=ok gateway_adapter=3.17.4
