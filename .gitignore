@@ -30,3 +30,8 @@ data/incidents.json
 *.onnx
 *.pt
 *.pth
+
+# Hackathon generated artifacts
+replay.json
+*_log.json
+*.tar.gz
