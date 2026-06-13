@@ -58,7 +58,7 @@ Then restart the server and run analysis again. The UI status pill reports `azur
 2. Review the uploaded outage packet in the document list.
 3. Inspect the generated crisis brief.
 4. Click citation chips to view the exact evidence quotes.
-5. Export the report JSON for submission artifacts or demo narration.
+5. Export the report JSON for submission artifacts or screenshots.
 
 ## API
 
@@ -76,14 +76,23 @@ Then restart the server and run analysis again. The UI status pill reports `azur
 - Reliability and safety: unsupported claims are marked unknown and missing evidence is surfaced explicitly.
 - Community vote: the demo scenario is understandable in under two minutes.
 
-## Demo Video Script
+## Submitted Demo Evidence
 
-1. Open CrisisBrief and load the demo incident.
-2. Explain that the packet includes incident notes, logs, support complaints, policy, and postmortem fragments.
-3. Run analysis and show the five-part brief.
-4. Click citations for root cause, customer impact, and status-page obligations.
-5. Highlight missing evidence and safety behavior.
-6. Close with the Foundry IQ story: retrieval-grounded incident reasoning with citations.
+The hackathon submission used screenshots/images from the running local app at `http://localhost:3000` rather than a recorded demo video.
+
+The submitted images show:
+
+1. The CrisisBrief workspace after loading the seeded payment outage incident.
+2. The generated executive summary, timeline, root-cause hypotheses, risk matrix, and action plan.
+3. Citation chips that connect major claims back to uploaded evidence.
+4. Missing evidence and safety notes that show the app avoids unsupported claims.
+
+To reproduce the submitted screenshots:
+
+1. Run `npm start`.
+2. Open `http://localhost:3000`.
+3. Click `Load Demo Incident`.
+4. Capture the generated crisis brief and citation views.
 
 ## Policies
 
