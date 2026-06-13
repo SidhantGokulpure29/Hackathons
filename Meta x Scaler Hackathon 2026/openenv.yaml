@@ -1,0 +1,31 @@
+spec_version: 1
+name: my_env
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+
+tasks:
+  - id: easy-auth-token-leak
+    title: Authentication Helper Cleanup
+    difficulty: easy
+    has_grader: true
+    grader:
+      type: deterministic
+      name: deterministic_pr_review_grader
+
+  - id: medium-billing-idempotency
+    title: Billing Retry Resilience
+    difficulty: medium
+    has_grader: true
+    grader:
+      type: deterministic
+      name: deterministic_pr_review_grader
+
+  - id: hard-export-authorization
+    title: Customer Data Export Endpoint
+    difficulty: hard
+    has_grader: true
+    grader:
+      type: deterministic
+      name: deterministic_pr_review_grader

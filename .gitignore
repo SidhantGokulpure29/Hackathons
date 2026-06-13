@@ -1,13 +1,32 @@
+# Python environments
 .venv/
 venv/
 env/
+my_env/
+
+# Python caches/build output
 __pycache__/
+.pytest_cache/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+openenv_my_env.egg-info/
+pytest-cache-files-*/
+
+# Node/local app output
 node_modules/
 .env
 *.log
+*.tmp
+*.temp
 data/incidents.json
+
+# Large local datasets/models
 *.csv
 *.pkl
 *.joblib
 *.h5
+*.onnx
+*.pt
+*.pth
