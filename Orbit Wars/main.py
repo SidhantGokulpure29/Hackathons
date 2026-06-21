@@ -39,6 +39,7 @@ from orbit_lite.planner_core import (
     largest_initial_player_count,
     make_launch_set,
     reachable_mask,
+    reinforcement_timing_factor,
     safe_drain,
     score_candidates,
 )
@@ -49,8 +50,6 @@ TOTAL_STEPS = 500
 
 @dataclass(frozen=True)
 class ProducerLiteConfig:
-    """Behaviour knobs."""
-
     horizon: int = 18
     max_sources_per_lane: int = 12
     max_offensive_targets: int = 12
@@ -58,6 +57,9 @@ class ProducerLiteConfig:
     max_waves_per_turn: int = 7
     roi_threshold: float = 1.5
     min_ships_to_launch: float = 4.0
+    reinforce_size_beta: float = 1.0
+    reinforce_eta_free: float = 3.0
+    reinforce_eta_scale: float = 12.0
     enable_regroup: bool = True
     max_regroup_time: float = 7.0
     regroup_pressure_delta_min: float = 0.25
@@ -65,12 +67,11 @@ class ProducerLiteConfig:
     max_regroup_targets_per_source: int = 7
     regroup_pressure_norm: str = "none"
     regroup_time_penalty_weight: float = 1e-3
-    terminal_phase_turns: int = 40
-    terminal_roi_threshold: float = 1.0
-    terminal_max_waves_per_turn: int = 8
-    terminal_enable_regroup: bool = False
-    # --- exp41: evaluate several commit fractions per (src, tgt) ------------
     size_multipliers: tuple[float, ...] = (0.5, 0.75, 1.0)
+    terminal_phase_turns: int = 80
+    terminal_roi_threshold: float = 1.0
+    terminal_max_waves_per_turn: int = 10
+    terminal_enable_regroup: bool = False
 
 
 def _movement_config(config: ProducerLiteConfig, *, player_count: int) -> MovementConfig:
@@ -134,7 +135,6 @@ def _tier_candidates(
     device,
     dtype,
 ):
-    """Build scored candidates for one fleet-size fraction."""
     sizes = (drain.view(S, 1) * float(size_mult)).floor().clamp(min=1.0).expand(S, T)
     K = int(floor.shape[-1])
 
@@ -239,10 +239,37 @@ def plan_lite_waves(
         H_eff=H_eff, player_id=pid,
     )
 
+    # Fleet commitment cap: if too many ships are in transit, scale back attacks
+    our_fleet = obs.f_ships[obs.f_owner == pid].sum().to(dtype)
+    our_planets = obs.ships[obs.owned].sum().to(dtype)
+    total_owned = our_fleet + our_planets
+    if total_owned > 0:
+        fleet_ratio = our_fleet / total_owned
+        if fleet_ratio > 0.4:
+            scale = ((0.8 - fleet_ratio) / 0.4).clamp(min=0.0, max=1.0)
+            drain = drain * scale
+
     eta_cap = torch.full((T,), float(K_eta), dtype=dtype, device=device)
+
+    beta = float(config.reinforce_size_beta)
+    enemy_mass = (
+        cheap_enemy_pressure(obs, cache, horizon=float(K_eta), player_id=pid)
+        if beta > 0.0 or bool(config.enable_regroup) else None
+    )
+
+    reinforcement = None
+    if beta > 0.0:
+        enemy_mass_t = enemy_mass[target_idx.clamp(0, P - 1)]
+        k_arange = torch.arange(1, K_eta + 1, device=device, dtype=dtype)
+        rho = reinforcement_timing_factor(
+            k_arange, eta_free=float(config.reinforce_eta_free),
+            eta_scale=float(config.reinforce_eta_scale),
+        )
+        reinforcement = beta * rho.view(1, K_eta) * enemy_mass_t.view(T, 1)
     floor = capture_floor(
         garrison_status, target_idx=target_idx, k_max=K_eta,
         capture_overhead=1.0, player_id=pid,
+        reinforcement=reinforcement,
     )
 
     tier_parts = [
@@ -257,8 +284,7 @@ def plan_lite_waves(
             floor=floor,
             eta_cap=eta_cap,
             size_mult=float(mult),
-            S=S,
-            T=T,
+            S=S, T=T,
             pid=pid,
             garrison_status=garrison_status,
             prod=prod,
@@ -290,7 +316,7 @@ def plan_lite_waves(
 
     if not bool(config.enable_regroup):
         return wave_entries
-    enemy_mass = cheap_enemy_pressure(obs, cache, horizon=float(K_eta), player_id=pid)
+
     regroup_entries = _plan_regroup(
         movement=movement, obs=obs, obs_tensors=obs_tensors, garrison_status=garrison_status,
         leftover=leftover, original_ships=obs.ships.to(dtype), pressure=enemy_mass,
@@ -334,6 +360,7 @@ def run_turn(obs_tensors: dict, *, config: ProducerLiteConfig, player_count: int
     return entries_to_sparse_payload(entries, planet_ids=planet_ids)
 
 
+# 4P FFA preset
 CONFIG_4P = dataclasses.replace(
     ProducerLiteConfig(),
     horizon=13,
@@ -344,15 +371,8 @@ CONFIG_4P = dataclasses.replace(
 )
 
 
-CONFIG_2P = dataclasses.replace(
-    ProducerLiteConfig(),
-    max_offensive_targets=14,
-    size_multipliers=(0.4, 0.6, 0.8, 1.0),
-)
-
-
 def _config_for(player_count: int) -> ProducerLiteConfig:
-    return CONFIG_4P if int(player_count) >= 4 else CONFIG_2P
+    return CONFIG_4P if int(player_count) >= 4 else ProducerLiteConfig()
 
 
 class ProducerLiteMemory:

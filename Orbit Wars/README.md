@@ -62,7 +62,7 @@ def agent(obs):
 |-- run_local.py                    # Local environment runner
 |-- replay.json                     # Latest downloaded replay for analysis
 |-- 0_log.json / 1_log.json         # Latest downloaded player logs
-|-- submission_exp48.tar.gz         # Strong known baseline archive
+|-- submission_exp48.tar.gz         # Top submission — leaderboard score 1211
 `-- submission_exp48_*.tar.gz       # Later experimental submission archives
 ```
 
@@ -171,6 +171,6 @@ If this agent places in the prize range, the methodology, code, setup instructio
 
 ## Status
 
-The strongest submitted branch so far is based on the `exp48` / `orbit_lite` planner family. Later versions experiment with 2-player aggression, target breadth, fleet sizing, and defensive behavior.
+The strongest submitted branch is the `exp48` / `orbit_lite` planner family (`submission_exp48.tar.gz`), which achieved a final leaderboard score of **1211**. Later versions experiment with 2-player aggression, target breadth, fleet sizing, and defensive behavior.
 
 This repo is an active competition workspace, so replay files, logs, and submission archives may represent the latest iteration rather than a final polished release.
